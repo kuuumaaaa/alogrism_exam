@@ -1,0 +1,21 @@
+version: "3"
+
+# services:
+#   notebook:
+#     build : ./
+#     ports:
+#       - "8888:8888"
+#     volumes:
+#       - "./src:/home/work"
+      
+services:
+  jupyterlab:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - "./src:/work"
+    ports:
+      - "8888:8888"
+    tty: true
+    command: jupyter lab --ip=0.0.0.0 --port=8888 --allow-root --no-browser
