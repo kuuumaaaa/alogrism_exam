@@ -1,21 +1,15 @@
-version: "3"
-
-# services:
-#   notebook:
-#     build : ./
-#     ports:
-#       - "8888:8888"
-#     volumes:
-#       - "./src:/home/work"
-      
+version: "3.3"
 services:
-  jupyterlab:
-    build: 
+  cppdev:
+    build:
       context: .
       dockerfile: Dockerfile
+    image: cppdev
+    container_name: cppdev
     volumes:
-      - "./src:/work"
-    ports:
-      - "8888:8888"
+      - type: bind
+        source: .
+        target: /cppdev
+    stdin_open: true
     tty: true
-    command: jupyter lab --ip=0.0.0.0 --port=8888 --allow-root --no-browser
+    working_dir: /cppdev/src/build
